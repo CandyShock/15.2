@@ -4,12 +4,13 @@ from Mixins import MixinTest
 
 
 class Category(MixinTest):
-    def __init__(self, name, desc, obj):
+    def __init__(self, name, desc, obj, price):
         self.__list_t = []
         self.name = name
         self.desc = desc
         """количество на складе"""
         self.obj = obj
+        self.price = price
 
     @classmethod
     def list_t(cls, emp):
@@ -19,7 +20,7 @@ class Category(MixinTest):
     def list_append(self, data):
         self.__list_t.append(data)
 
-    def clsxv(self):
+    def check_list(self):
         return self.__list_t
 
     @property
@@ -31,6 +32,17 @@ class Category(MixinTest):
 
     def __len__(self):
         return len(self.__list_t)
+
+    def price_all(self):
+        """Высчитывает среднюю цену и обрабатывает исключение при делении на 0"""
+        price_list = []
+        for i in self.__list_t:
+            price_list.append(i.price)
+        try:
+            average_price = sum(price_list) / len(price_list)
+        except ZeroDivisionError:
+            return "0"
+        return f"{round(average_price)}, средняя цена"
 
 
 class Shape(ABC):
@@ -80,4 +92,3 @@ class Product(Shape, MixinTest):
 
     def __add__(self, other):
         return self.price * self.count + other.price * other.count
-

@@ -35,9 +35,13 @@ class Smartfone(Product, MixinTest):
 
     def ad_prod(self, other):
         """если добавляемый экземпляр не является наследником или родителем TypeError"""
-        if isinstance(other, Product):
+        """если количество равно 0, выдает ошибку ValueError"""
+        if isinstance(other, Product) and other.count != 0:
             self.product_list.append(other)
             return f'Добавлено'
+        elif isinstance(other, Product) and other.count == 0:
+            raise ValueError
+
         raise TypeError
 
 
@@ -73,10 +77,17 @@ class Gras(Product, MixinTest):
 
     def ad_prod(self, other):
         """если добавляемый экземпляр не является наследником или родителем TypeError"""
-        if isinstance(other, Product):
+        """если количество равно 0, выдает ошибку ValueError"""
+        if isinstance(other, Product) and other.count != 0:
             self.product_list.append(other)
             return f'Добавлено'
+        elif isinstance(other, Product) and other.count == 0:
+            raise ValueError
+
         raise TypeError
 
 
-
+#a = Smartfone("ывы", "a", "a", 6, "a", "a", "a", "a")
+#b = Smartfone("ывы", "a", "a", 1, "a", "a", "a", "a")
+#at = Gras("ывы", "a", "a", 0, "a", "a", "a")
+#print(Smartfone.ad_prod(a, at))
