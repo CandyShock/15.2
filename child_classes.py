@@ -87,7 +87,3 @@ class Gras(Product, MixinTest):
         raise TypeError
 
 
-#a = Smartfone("ывы", "a", "a", 6, "a", "a", "a", "a")
-#b = Smartfone("ывы", "a", "a", 1, "a", "a", "a", "a")
-#at = Gras("ывы", "a", "a", 0, "a", "a", "a")
-#print(Smartfone.ad_prod(a, at))
